@@ -1,0 +1,9 @@
+[
+  "\.git.*",
+  "\..*ignore.*",
+  "LICENSE",
+  "README.md",
+  "example_docs",
+  ".*\\.swp$",
+  "maintenance"
+]
