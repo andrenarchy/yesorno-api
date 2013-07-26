@@ -10,9 +10,9 @@ function (newDoc, oldDoc, userCtx, secObj) {
       throw({forbidden: "Field can't be changed: " + field});
   }
 
-  function isNumber(field, message) {
-    if (typeof(newDoc[field]) != "number") {
-      throw({forbidden: "Field must be a number: " + field});
+  function isType(field, type, message) {
+    if (typeof(newDoc[field]) != type) {
+      throw({forbidden: message || "Field '" + field + "' must be a " + type});
     }
   }
 
@@ -37,6 +37,34 @@ function (newDoc, oldDoc, userCtx, secObj) {
     } else {
       throw({forbidden: 'Only admins are allowed to delete docs.'});
     }
+  }
+
+  required('ctime');
+  isDate('ctime');
+
+  required('mtime');
+  isDate('mtime');
+
+  required('user');
+  isType('user', 'string');
+
+  required('type');
+  if (newDoc['type']=='yesorno') {
+    required('question');
+    isType('question', 'string');
+
+    required('answer');
+    isType('answer', 'boolean');
+
+    required('answer_true');
+    isType('answer_true', 'string');
+
+    required('answer_false');
+    isType('answer_false', 'string');
+
+    // TODO: check user!
+  } else {
+    throw({forbidden: 'Unknown type: '+ newDoc['type'] });
   }
 
 }
