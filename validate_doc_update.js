@@ -50,6 +50,8 @@ function (newDoc, oldDoc, userCtx, secObj) {
 
   required('type');
   if (newDoc['type']=='yesorno') {
+    // the validation should be the same as in the Backbone model 'Yesorno' in
+    // the client
     required('question');
     isType('question', 'string');
 
