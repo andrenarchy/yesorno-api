@@ -1,6 +1,6 @@
 function (newDoc, oldDoc, userCtx, secObj) {
   function required(field, message /* optional */) {
-    if (!newDoc[field]) {
+    if (!newDoc.hasOwnProperty(field)) {
       throw({forbidden: message || "Document must have a " + field});
     }
   }
