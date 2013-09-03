@@ -1,0 +1,6 @@
+[
+  {
+    "from": "update_yesorno/*",
+    "to": "_update/yesorno/*"
+  }
+]
